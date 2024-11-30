@@ -1,25 +1,10 @@
 pipeline {
-    agent any  // Use any available agent/node
-
+    agent { any }
     stages {
-        stage('Checkout') {
+        stage('build') {
             steps {
-                echo 'Checking out code...'
-                git branch: 'main', url: 'https://github.com/<your-username>/<your-repository>.git'
+                sh 'mvn --version'
             }
         }
-
-        stage('Build') {
-            steps {
-                echo 'Building the application...'
-                // Replace with your build command (e.g., Maven/Gradle/NPM)
-                sh './gradlew build'  // Example for Gradle build
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo 'Running tests...'
-                // Replace with your test command
-                sh './gradlew test'  // Example for running Gradle tests
-            }
+    }
+}
